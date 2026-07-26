@@ -1,0 +1,524 @@
+<controls:MicaWindow
+    x:Class="YoriiInstaller.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MicaWPF.Controls;assembly=MicaWPF"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:YoriiInstaller"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title=""
+    Width="650"
+    Height="440"
+    TitleBarType="WinUI"
+    UseLayoutRounding="True"
+    mc:Ignorable="d">
+
+    <controls:MicaWindow.Resources>
+        <DrawingImage x:Key="Logo">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V360 H360 V0 H0 Z">
+                    <DrawingGroup.Transform>
+                        <TranslateTransform X="260" Y="0" />
+                    </DrawingGroup.Transform>
+                    <DrawingGroup Transform="1,0,0,1,180,0">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C33,0 66,0 100,0 100,6.6 100,13.2 100,20 106.6,20 113.2,20 120,20 120,26.6 120,33.2 120,40 126.6,40 133.2,40 140,40 140,46.6 140,53.2 140,60 146.6,60 153.2,60 160,60 160,93 160,126 160,160 153.4,160 146.8,160 140,160 140,173.2 140,186.4 140,200 146.6,200 153.2,200 160,200 160,206.6 160,213.2 160,220 166.6,220 173.2,220 180,220 180,246.4 180,272.8 180,300 173.4,300 166.8,300 160,300 160,306.6 160,313.2 160,320 153.4,320 146.8,320 140,320 140,326.6 140,333.2 140,340 126.8,340 113.6,340 100,340 100,346.6 100,353.2 100,360 67,360 34,360 0,360 0,346.8 0,333.6 0,320 6.6,320 13.2,320 20,320 20,313.4 20,306.8 20,300 6.8,300 -6.4,300 -20,300 -20,306.6 -20,313.2 -20,320 -33.2,320 -46.4,320 -60,320 -60,326.6 -60,333.2 -60,340 -99.6,340 -139.2,340 -180,340 -180,326.8 -180,313.6 -180,300 -173.4,300 -166.8,300 -160,300 -160,293.4 -160,286.8 -160,280 -166.6,280 -173.2,280 -180,280 -180,266.8 -180,253.6 -180,240 -173.4,240 -166.8,240 -160,240 -160,233.4 -160,226.8 -160,220 -146.8,220 -133.6,220 -120,220 -120,213.4 -120,206.8 -120,200 -126.6,200 -133.2,200 -140,200 -140,193.4 -140,186.8 -140,180 -146.6,180 -153.2,180 -160,180 -160,173.4 -160,166.8 -160,160 -166.6,160 -173.2,160 -180,160 -180,140.2 -180,120.4 -180,100 -173.4,100 -166.8,100 -160,100 -160,93.4 -160,86.8 -160,80 -153.4,80 -146.8,80 -140,80 -140,73.4 -140,66.8 -140,60 -113.6,60 -87.2,60 -60,60 -60,66.6 -60,73.2 -60,80 -53.4,80 -46.8,80 -40,80 -40,66.8 -40,53.6 -40,40 -33.4,40 -26.8,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z M20,280C20,286.6 20,293.2 20,300 33.2,300 46.4,300 60,300 60,293.4 60,286.8 60,280 46.8,280 33.6,280 20,280z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,0">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C33,0 66,0 100,0 100,6.6 100,13.2 100,20 106.6,20 113.2,20 120,20 120,59.6 120,99.2 120,140 113.4,140 106.8,140 100,140 100,120.2 100,100.4 100,80 93.4,80 86.8,80 80,80 80,99.8 80,119.6 80,140 73.4,140 66.8,140 60,140 60,146.6 60,153.2 60,160 40.2,160 20.4,160 0,160 0,153.4 0,146.8 0,140 -6.6,140 -13.2,140 -20,140 -20,159.8 -20,179.6 -20,200 -26.6,200 -33.2,200 -40,200 -40,206.6 -40,213.2 -40,220 -53.2,220 -66.4,220 -80,220 -80,213.4 -80,206.8 -80,200 -73.4,200 -66.8,200 -60,200 -60,180.2 -60,160.4 -60,140 -66.6,140 -73.2,140 -80,140 -80,153.2 -80,166.4 -80,180 -106.4,180 -132.8,180 -160,180 -160,173.4 -160,166.8 -160,160 -166.6,160 -173.2,160 -180,160 -180,140.2 -180,120.4 -180,100 -173.4,100 -166.8,100 -160,100 -160,93.4 -160,86.8 -160,80 -153.4,80 -146.8,80 -140,80 -140,73.4 -140,66.8 -140,60 -113.6,60 -87.2,60 -60,60 -60,66.6 -60,73.2 -60,80 -53.4,80 -46.8,80 -40,80 -40,66.8 -40,53.6 -40,40 -33.4,40 -26.8,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,260,80">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,26.4 20,52.8 20,80 13.4,80 6.8,80 0,80 0,86.6 0,93.2 0,100 -13.2,100 -26.4,100 -40,100 -40,106.6 -40,113.2 -40,120 -46.6,120 -53.2,120 -60,120 -60,126.6 -60,133.2 -60,140 -66.6,140 -73.2,140 -80,140 -80,146.6 -80,153.2 -80,160 -86.6,160 -93.2,160 -100,160 -100,166.6 -100,173.2 -100,180 -106.6,180 -113.2,180 -120,180 -120,186.6 -120,193.2 -120,200 -133.2,200 -146.4,200 -160,200 -160,206.6 -160,213.2 -160,220 -186.4,220 -212.8,220 -240,220 -240,213.4 -240,206.8 -240,200 -246.6,200 -253.2,200 -260,200 -260,186.8 -260,173.6 -260,160 -253.4,160 -246.8,160 -240,160 -240,153.4 -240,146.8 -240,140 -226.8,140 -213.6,140 -200,140 -200,133.4 -200,126.8 -200,120 -206.6,120 -213.2,120 -220,120 -220,113.4 -220,106.8 -220,100 -200.2,100 -180.4,100 -160,100 -160,86.8 -160,73.6 -160,60 -153.4,60 -146.8,60 -140,60 -140,79.8 -140,99.6 -140,120 -146.6,120 -153.2,120 -160,120 -160,126.6 -160,133.2 -160,140 -146.8,140 -133.6,140 -120,140 -120,133.4 -120,126.8 -120,120 -113.4,120 -106.8,120 -100,120 -100,100.2 -100,80.4 -100,60 -93.4,60 -86.8,60 -80,60 -80,66.6 -80,73.2 -80,80 -60.2,80 -40.4,80 -20,80 -20,73.4 -20,66.8 -20,60 -13.4,60 -6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,40">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,52.8 20,105.6 20,160 13.4,160 6.8,160 0,160 0,166.6 0,173.2 0,180 -13.2,180 -26.4,180 -40,180 -40,173.4 -40,166.8 -40,160 -33.4,160 -26.8,160 -20,160 -20,140.2 -20,120.4 -20,100 -26.6,100 -33.2,100 -40,100 -40,113.2 -40,126.4 -40,140 -66.4,140 -92.8,140 -120,140 -120,133.4 -120,126.8 -120,120 -126.6,120 -133.2,120 -140,120 -140,100.2 -140,80.4 -140,60 -133.4,60 -126.8,60 -120,60 -120,53.4 -120,46.8 -120,40 -113.4,40 -106.8,40 -100,40 -100,33.4 -100,26.8 -100,20 -73.6,20 -47.2,20 -20,20 -20,26.6 -20,33.2 -20,40 -13.4,40 -6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,200">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 33.4,20 26.8,20 20,20 20,26.6 20,33.2 20,40 13.4,40 6.8,40 0,40 0,59.8 0,79.6 0,100 -13.2,100 -26.4,100 -40,100 -40,106.6 -40,113.2 -40,120 -53.2,120 -66.4,120 -80,120 -80,126.6 -80,133.2 -80,140 -119.6,140 -159.2,140 -200,140 -200,126.8 -200,113.6 -200,100 -167,100 -134,100 -100,100 -100,93.4 -100,86.8 -100,80 -86.8,80 -73.6,80 -60,80 -60,73.4 -60,66.8 -60,60 -53.4,60 -46.8,60 -40,60 -40,53.4 -40,46.8 -40,40 -33.4,40 -26.8,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,40">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 26.6,20 33.2,20 40,20 40,53 40,86 40,120 33.4,120 26.8,120 20,120 20,133.2 20,146.4 20,160 6.8,160 -6.4,160 -20,160 -20,166.6 -20,173.2 -20,180 -26.6,180 -33.2,180 -40,180 -40,186.6 -40,193.2 -40,200 -46.6,200 -53.2,200 -60,200 -60,213.2 -60,226.4 -60,240 -73.2,240 -86.4,240 -100,240 -100,226.8 -100,213.6 -100,200 -93.4,200 -86.8,200 -80,200 -80,193.4 -80,186.8 -80,180 -73.4,180 -66.8,180 -60,180 -60,173.4 -60,166.8 -60,160 -66.6,160 -73.2,160 -80,160 -80,153.4 -80,146.8 -80,140 -66.8,140 -53.6,140 -40,140 -40,133.4 -40,126.8 -40,120 -33.4,120 -26.8,120 -20,120 -20,113.4 -20,106.8 -20,100 -13.4,100 -6.8,100 0,100 0,67 0,34 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,280">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C19.8,0 39.6,0 60,0 60,6.6 60,13.2 60,20 53.4,20 46.8,20 40,20 40,26.6 40,33.2 40,40 53.2,40 66.4,40 80,40 80,46.6 80,53.2 80,60 66.8,60 53.6,60 40,60 40,66.6 40,73.2 40,80 7,80 -26,80 -60,80 -60,66.8 -60,53.6 -60,40 -53.4,40 -46.8,40 -40,40 -40,33.4 -40,26.8 -40,20 -26.8,20 -13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,140">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 13.4,60 6.8,60 0,60 0,66.6 0,73.2 0,80 6.6,80 13.2,80 20,80 20,86.6 20,93.2 20,100 6.8,100 -6.4,100 -20,100 -20,106.6 -20,113.2 -20,120 -39.8,120 -59.6,120 -80,120 -80,106.8 -80,93.6 -80,80 -66.8,80 -53.6,80 -40,80 -40,73.4 -40,66.8 -40,60 -46.6,60 -53.2,60 -60,60 -60,53.4 -60,46.8 -60,40 -40.2,40 -20.4,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,40">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 26.6,20 33.2,20 40,20 40,53 40,86 40,120 26.8,120 13.6,120 0,120 0,126.6 0,133.2 0,140 -13.2,140 -26.4,140 -40,140 -40,133.4 -40,126.8 -40,120 -33.4,120 -26.8,120 -20,120 -20,113.4 -20,106.8 -20,100 -13.4,100 -6.8,100 0,100 0,67 0,34 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,260,80">
+                        <GeometryDrawing Brush="#FF8A95B5" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,26.4 20,52.8 20,80 13.4,80 6.8,80 0,80 0,86.6 0,93.2 0,100 -26.4,100 -52.8,100 -80,100 -80,106.6 -80,113.2 -80,120 -86.6,120 -93.2,120 -100,120 -100,100.2 -100,80.4 -100,60 -93.4,60 -86.8,60 -80,60 -80,66.6 -80,73.2 -80,80 -60.2,80 -40.4,80 -20,80 -20,73.4 -20,66.8 -20,60 -13.4,60 -6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,200">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,13.2 40,26.4 40,40 26.8,40 13.6,40 0,40 0,46.6 0,53.2 0,60 6.6,60 13.2,60 20,60 20,66.6 20,73.2 20,80 0.2,80 -19.6,80 -40,80 -40,66.8 -40,53.6 -40,40 -33.4,40 -26.8,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,200">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 33.4,20 26.8,20 20,20 20,26.6 20,33.2 20,40 13.4,40 6.8,40 0,40 0,59.8 0,79.6 0,100 -13.2,100 -26.4,100 -40,100 -40,93.4 -40,86.8 -40,80 -33.4,80 -26.8,80 -20,80 -20,73.4 -20,66.8 -20,60 -26.6,60 -33.2,60 -40,60 -40,53.4 -40,46.8 -40,40 -33.4,40 -26.8,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,140">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 13.4,60 6.8,60 0,60 0,66.6 0,73.2 0,80 -13.2,80 -26.4,80 -40,80 -40,73.4 -40,66.8 -40,60 -46.6,60 -53.2,60 -60,60 -60,53.4 -60,46.8 -60,40 -40.2,40 -20.4,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,0,300">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 53,20 86,20 120,20 120,26.6 120,33.2 120,40 80.4,40 40.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,0,240">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 39.8,20 59.6,20 80,20 80,26.6 80,33.2 80,40 73.4,40 66.8,40 60,40 60,46.6 60,53.2 60,60 46.8,60 33.6,60 20,60 20,53.4 20,46.8 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,0">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C33,0 66,0 100,0 100,6.6 100,13.2 100,20 73.6,20 47.2,20 20,20 20,26.6 20,33.2 20,40 6.8,40 -6.4,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,320">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 46.4,20 72.8,20 100,20 100,26.6 100,33.2 100,40 67,40 34,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,200">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 26.6,20 33.2,20 40,20 40,46.4 40,72.8 40,100 33.4,100 26.8,100 20,100 20,80.2 20,60.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,140">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 39.8,20 59.6,20 80,20 80,26.6 80,33.2 80,40 60.2,40 40.4,40 20,40 20,46.6 20,53.2 20,60 13.4,60 6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,40,60">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C26.4,0 52.8,0 80,0 80,6.6 80,13.2 80,20 60.2,20 40.4,20 20,20 20,26.6 20,33.2 20,40 6.8,40 -6.4,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,40">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,33 20,66 20,100 13.4,100 6.8,100 0,100 0,86.8 0,73.6 0,60 -6.6,60 -13.2,60 -20,60 -20,53.4 -20,46.8 -20,40 -13.4,40 -6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,220,220">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 6.8,60 -6.4,60 -20,60 -20,46.8 -20,33.6 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,60">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,33 20,66 20,100 13.4,100 6.8,100 0,100 0,67 0,34 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,300">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C26.4,0 52.8,0 80,0 80,6.6 80,13.2 80,20 53.6,20 27.2,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,200">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 33.4,20 26.8,20 20,20 20,26.6 20,33.2 20,40 6.8,40 -6.4,40 -20,40 -20,33.4 -20,26.8 -20,20 -13.4,20 -6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,160">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 0.2,40 -19.6,40 -40,40 -40,33.4 -40,26.8 -40,20 -26.8,20 -13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,280">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C19.8,0 39.6,0 60,0 60,6.6 60,13.2 60,20 40.2,20 20.4,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,240">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,13.2 40,26.4 40,40 33.4,40 26.8,40 20,40 20,33.4 20,26.8 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,140">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 13.4,60 6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,140">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 13.4,60 6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,60,120">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 33.4,20 26.8,20 20,20 20,26.6 20,33.2 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,0,100">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,19.8 20,39.6 20,60 13.4,60 6.8,60 0,60 0,40.2 0,20.4 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,80">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 26.6,20 33.2,20 40,20 40,26.6 40,33.2 40,40 26.8,40 13.6,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,320">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,320">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,320">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,300">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,300">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,120,300">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,280">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,280">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,260">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,260">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,240">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,80,240">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,200">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,220">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,200">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,60,200">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,160">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,100">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,13.2 20,26.4 20,40 13.4,40 6.8,40 0,40 0,26.8 0,13.6 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,80">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,220,60">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,20">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C13.2,0 26.4,0 40,0 40,6.6 40,13.2 40,20 26.8,20 13.6,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,320">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,300">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,300">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,300">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,300">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,280">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,280">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,40,280">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,260">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,260">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,260">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,260">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,260">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,240">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,240">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,240">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,220">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,220">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,120,220">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,220">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,80,220">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,60,220">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,320,200">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,200">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,260,200">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,200">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,200,200">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,200">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,200">
+                        <GeometryDrawing Brush="#FFEBEFFF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,140,180">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,180">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,40,180">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,160">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,160">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,240,140">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,180,140">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,140">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,120">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,120,100">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,100">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,260,80">
+                        <GeometryDrawing Brush="#FF9CA7CF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,120,80">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,100,80">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,20,80">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,300,40">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,40">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,280,20">
+                        <GeometryDrawing Brush="#FF6D7A8C" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,260,20">
+                        <GeometryDrawing Brush="#FFBDC9FF" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                    <DrawingGroup Transform="1,0,0,1,160,20">
+                        <GeometryDrawing Brush="#FF818CA9" Geometry="F1 M360,360z M0,0z M0,0C6.6,0 13.2,0 20,0 20,6.6 20,13.2 20,20 13.4,20 6.8,20 0,20 0,13.4 0,6.8 0,0z" />
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <Style x:Key="AccentButton" TargetType="Button">
+            <Setter Property="Background" Value="#ea9c80" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Padding" Value="24,6" />
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="Root"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#d58f76" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#c1826c" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style
+            x:Key="CancelButton"
+            BasedOn="{StaticResource AccentButton}"
+            TargetType="Button">
+            <Setter Property="Background" Value="#454545" />
+        </Style>
+
+    </controls:MicaWindow.Resources>
+
+    <Grid Margin="28,16,16,16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="0,0,0,8"
+                    FontFamily="Segoe UI Variable Display, Segoe UI"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Yorii Launcher" />
+
+                <TextBlock
+                    x:Name="StatusText"
+                    FontFamily="Segoe UI Variable Text, Segoe UI"
+                    FontSize="14"
+                    Foreground="#ea9c80"
+                    Text="Ready to install"
+                    TextWrapping="Wrap" />
+
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <controls:ProgressRing
+                        x:Name="CertDownloadRing"
+                        Width="12"
+                        Height="12"
+                        Margin="0,0,8,0"
+                        IsIndeterminate="False"
+                        Visibility="Hidden" />
+                    <TextBlock
+                        x:Name="DownloadCertificateText"
+                        FontFamily="Segoe UI Variable Text, Segoe UI"
+                        FontSize="14"
+                        Foreground="#9E9E9E"
+                        Text="Download certificate"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <controls:ProgressRing
+                        x:Name="CertInstallRing"
+                        Width="12"
+                        Height="12"
+                        Margin="0,0,8,0"
+                        IsIndeterminate="False"
+                        Visibility="Hidden" />
+                    <TextBlock
+                        x:Name="InstallCertificateText"
+                        FontFamily="Segoe UI Variable Text, Segoe UI"
+                        FontSize="14"
+                        Foreground="#9E9E9E"
+                        Text="Install certificate"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <controls:ProgressRing
+                        x:Name="PackageDownloadRing"
+                        Width="12"
+                        Height="12"
+                        Margin="0,0,8,0"
+                        IsIndeterminate="False"
+                        Visibility="Hidden" />
+                    <TextBlock
+                        x:Name="FetchLatestReleaseText"
+                        FontFamily="Segoe UI Variable Text, Segoe UI"
+                        FontSize="14"
+                        Foreground="#9E9E9E"
+                        Text="Download package"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <controls:ProgressRing
+                        x:Name="PackageInstallRing"
+                        Width="12"
+                        Height="12"
+                        Margin="0,0,8,0"
+                        IsIndeterminate="False"
+                        Visibility="Hidden" />
+                    <TextBlock
+                        x:Name="LatestReleaseText"
+                        FontFamily="Segoe UI Variable Text, Segoe UI"
+                        FontSize="14"
+                        Foreground="#9E9E9E"
+                        Text="Install package"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </StackPanel>
+
+            <Image
+                Width="128"
+                Height="128"
+                Margin="0,6,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Source="{StaticResource Logo}" />
+        </Grid>
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,32,12,0"
+            VerticalAlignment="Bottom">
+
+            <ProgressBar
+                x:Name="ProgressBar"
+                Foreground="#ea9c80"
+                IsIndeterminate="False"
+                Maximum="100"
+                Minimum="0"
+                Visibility="Hidden"
+                Value="0" />
+        </StackPanel>
+
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,0,16,16"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal">
+            <Button
+                x:Name="InstallBtn"
+                Width="120"
+                Margin="0,0,12,0"
+                Click="InstallBtn_Click"
+                Content="Install"
+                Style="{StaticResource AccentButton}" />
+
+            <Button
+                x:Name="CancelBtn"
+                Width="120"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="CancelBtn_Click"
+                Content="Cancel"
+                Style="{StaticResource AccentButton}" />
+        </StackPanel>
+    </Grid>
+</controls:MicaWindow>
+

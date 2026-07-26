@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net481</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+
+		<!-- 1. Explicitly enable modern C# language features -->
+		<LangVersion>12.0</LangVersion>
+
+		<!-- 2. Disable auto-generated global usings to fix CS8370 -->
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+
+		<!-- 1. Single File & Framework Dependent 
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>false</SelfContained-->
+
+		<!-- 2. Strip Execution Bloat 
+		<PublishReadyToRun>false</PublishReadyToRun>
+		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>-->
+
+		<ApplicationIcon>128.ico</ApplicationIcon>
+		<ErrorReport>none</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>none</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>none</DebugType>
+	</PropertyGroup>
+	
+	
+
+	<ItemGroup>
+		<Content Include="128.ico" />
+	</ItemGroup>
+	<!-- ADD THIS ITEMGROUP BELOW -->
+	<ItemGroup>
+		<PackageReference Include="Fody" Version="6.8.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Costura.Fody" Version="5.7.0">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="MicaWPF" Version="7.0.0" />
+	</ItemGroup>
+</Project>
