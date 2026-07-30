@@ -1,5 +1,5 @@
 # Yorii-Installer
-WPF based installer for Yorii Launcher using the installation script as backend and MicaWPF as frontend.
+WPF based installer for Yorii Launcher using C# for backend logic and MicaWPF as frontend.
 ## Screenshots
 <img width="851" height="630" alt="{CAB103CD-5F6C-4DE7-86A9-C1361190339E}" src="https://github.com/user-attachments/assets/b6dba09c-894b-4444-8f97-fb05154bb8ae" /> 
 
