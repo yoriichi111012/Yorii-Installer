@@ -5,23 +5,18 @@
 		<UseWPF>true</UseWPF>
 		<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
 
-		<!-- 1. Explicitly enable modern C# language features -->
 		<LangVersion>12.0</LangVersion>
-
-		<!-- 2. Disable auto-generated global usings to fix CS8370 -->
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 
-		<!-- 1. Single File & Framework Dependent 
-		<PublishSingleFile>true</PublishSingleFile>
-		<SelfContained>false</SelfContained-->
-
-		<!-- 2. Strip Execution Bloat 
-		<PublishReadyToRun>false</PublishReadyToRun>
-		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>-->
-
 		<ApplicationIcon>128.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<ErrorReport>none</ErrorReport>
+
+		<Version>1.0.0.0</Version>
+		<Company>Yorii Launcher</Company>
+		<Product>Yorii Launcher Installer</Product>
+		<Description>Installer for Yorii Launcher</Description>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <DebugType>none</DebugType>
@@ -29,13 +24,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <DebugType>none</DebugType>
 	</PropertyGroup>
-	
-	
 
 	<ItemGroup>
 		<Content Include="128.ico" />
 	</ItemGroup>
-	<!-- ADD THIS ITEMGROUP BELOW -->
+	<ItemGroup>
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Fody" Version="6.8.1">
 			<PrivateAssets>all</PrivateAssets>
@@ -48,4 +43,16 @@
 	<ItemGroup>
 	  <PackageReference Include="MicaWPF" Version="7.0.0" />
 	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.28000.2270" />
+	</ItemGroup>
+	<PropertyGroup>
+		<SignCertificatePath Condition="'$(SignCertificatePath)'==''"></SignCertificatePath>
+		<SignCertificatePassword Condition="'$(SignCertificatePassword)'==''"></SignCertificatePassword>
+		<TimestampServer Condition="'$(TimestampServer)'==''">http://timestamp.digicert.com</TimestampServer>
+	</PropertyGroup>
+	<Target Name="SignOutput" AfterTargets="Build" Condition="'$(SignCertificatePath)'!=''">
+		<Exec Command="&quot;$(WindowsSdkDir)bin\$(WindowsSDKVersion)x64\signtool.exe&quot; sign /fd SHA256 /f &quot;$(SignCertificatePath)&quot; /p &quot;$(SignCertificatePassword)&quot; /tr &quot;$(TimestampServer)&quot; /td SHA256 &quot;$(TargetPath)&quot;" />
+	</Target>
 </Project>
+
